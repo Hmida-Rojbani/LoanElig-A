@@ -15,22 +15,18 @@ import de.tekup.loan.endpoints.LoanEndPoint;
 
 @EnableWs
 @Configuration
-public class LoanConfig {
-	
+public class LoanConfig {	
 	@Bean
 	public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context){
 		MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
 		messageDispatcherServlet.setApplicationContext(context);
-		messageDispatcherServlet.setTransformWsdlLocations(true);
-		
+		messageDispatcherServlet.setTransformWsdlLocations(true);		
 		return new ServletRegistrationBean<MessageDispatcherServlet>(messageDispatcherServlet);
 	}
-	
 	@Bean
 	public XsdSchema schema() {
 		return new SimpleXsdSchema(new ClassPathResource("loanEligebilty.xsd"));
-	}
-	
+	}	
 	@Bean("loan")
 	public DefaultWsdl11Definition wsdl11Definition(XsdSchema schema) {
 		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
